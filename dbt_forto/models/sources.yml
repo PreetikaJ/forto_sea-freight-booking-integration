@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: forto_data_raw
+    database: forto-bigquery-prod
+    schema: forto_data_raw
+    tables: 
+      - name: carrier_bookings
+      - name: shipments
+
+  - name: forto_curated
+    database: forto-bigquery-prod
+    schema: forto_curated
+    tables: 
+      - name: forto_carrier_bookings
+      - name: forto_shipments

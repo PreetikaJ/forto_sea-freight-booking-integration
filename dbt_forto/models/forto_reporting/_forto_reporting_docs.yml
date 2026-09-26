@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: dim_carrier_bookings
+    description: "dbt model for carrier bookings dataset."
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+
+  - name: shipment_volume_enriched
+    description: "dbt model for enriched shipment volume dataset."
+    config:
+      persist_docs:
+        relation: true
+        columns: true

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: forto_carrier_bookings
+    description: "dbt model for carrier bookings dataset."
+    config:
+      persist_docs:
+        relation: true
+        columns: true
+
+  - name: forto_shipments
+    description: "dbt model for shipments dataset."
+    config:
+      persist_docs:
+        relation: true
+        columns: true

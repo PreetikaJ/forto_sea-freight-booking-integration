@@ -1,0 +1,39 @@
+dbt_forto:
+  target: dev  
+  outputs:
+
+    dev:
+      dataset: forto_data_raw
+      job_execution_timeout_seconds: 1200
+      job_retries: 1
+      keyfile: C:\Users\jainp\keys\forto-bigquery-prod-5fd858f72b0d.json
+      location: EU
+      method: service-account
+      priority: interactive
+      project: forto-bigquery-prod
+      threads: 10
+      type: bigquery
+
+    staging:
+      dataset: forto_curated
+      job_execution_timeout_seconds: 1200
+      job_retries: 1
+      keyfile: C:\Users\jainp\keys\forto-bigquery-prod-5fd858f72b0d.json
+      location: EU
+      method: service-account
+      priority: interactive
+      project: forto-bigquery-prod
+      threads: 10
+      type: bigquery
+
+    prod:
+      dataset: forto_reporting
+      job_execution_timeout_seconds: 1200
+      job_retries: 1
+      keyfile: C:\Users\jainp\keys\forto-bigquery-prod-5fd858f72b0d.json
+      location: EU
+      method: service-account
+      priority: interactive
+      project: forto-bigquery-prod
+      threads: 10
+      type: bigquery
