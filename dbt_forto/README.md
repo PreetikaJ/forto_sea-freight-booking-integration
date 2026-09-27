@@ -96,7 +96,11 @@ dbt_forto/
 │
 ├── models/
 │   ├── forto_curated/
+|   |    ├── forto_carrier_bookings.sql
+|   |    └── forto_shipments.sql
 │   └── forto_reporting/
+|        ├── dim_carrier_bookings.sql
+|        └── shipment_volume_enriched.sql
 │   
 ├── macros/
 ├── seeds/

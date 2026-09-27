@@ -7,6 +7,52 @@ models:
       persist_docs:
         relation: true
         columns: true
+    columns:
+      - name: shipment_id
+        description: "Forto shipment identifier (SID) the booking belongs to."
+        tests:
+          - unique
+          - not_null
+      - name: carrier_booking_id
+        description: "Unique identifier of the carrier booking record."
+      - name: carrier_booking_reference
+        description: "Carrier-assigned booking reference, populated once confirmed."
+      - name: booking_attempt
+        description: "Booking attempt number for the shipment; increments on each retry."
+      - name: carrier_code
+        description: "Carrier Standard Carrier Alpha Code (SCAC)."
+      - name: carrier_name
+        description: "Human-readable carrier name."
+      - name: carrier_booking_state
+        description: "Carrier booking lifecycle state."
+      - name: is_volume_confirmed
+        description: "True when the shipment volume is confirmed."
+      - name: carrier_booking_source
+        description: "Origin of the booking request."
+      - name: integration_method
+        description: "Integration channel used to reach the carrier."
+      - name: is_spot_booking
+        description: "True when the booking is based on a spot offer."
+      - name: container_types
+        description: "Distinct Forto container type codes in the booking."
+      - name: has_dangerous_goods
+        description: "True when any cargo item carries dangerous goods."
+      - name: has_reefer_container
+        description: "True when any container is an operational or non-operational reefer."
+      - name: has_non_reefer_container
+        description: "True when any container is non-reefer; with has_reefer_container identifies a reefer/non-reefer mix."
+      - name: total_booking_attempts
+        description: "Total number of booking attempts for the shipment."
+      - name: has_multiple_attempts
+        description: "True when a shipment has multiple booking attempts."
+      - name: created_at
+        description: "UTC-timestamp indicating when entity was created."
+      - name: updated_at
+        description: "UTC-timestamp indicating when entity was last updated/deleted."
+      - name: publish_time
+        description: "PubSub metadata field. The time of publishing a message."
+      - name: dbt_loaded_at
+        description: "UTC-timestamp indicating when the entity was loaded into dbt."
 
   - name: shipment_volume_enriched
     description: "dbt model for enriched shipment volume dataset."

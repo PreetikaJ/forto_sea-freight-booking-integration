@@ -82,7 +82,7 @@ dim_carrier_bookings as (
         updated_at,
         publish_time,
         -- dbt metadata for downstream auditing
-        current_timestamp() as _dbt_loaded_at
+        current_timestamp() as dbt_loaded_at
     from ranked_bookings
     where recency_rank = 1
 )
