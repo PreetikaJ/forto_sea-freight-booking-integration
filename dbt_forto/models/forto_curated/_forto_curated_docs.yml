@@ -7,6 +7,63 @@ models:
       persist_docs:
         relation: true
         columns: true
+    columns:
+      - name: booking_attempt
+        description: Booking attempt number for the shipment; increments on each retry.
+        tests:
+          - not_null
+      - name: carrier_booking_reference
+        description: Carrier-assigned booking reference, populated once confirmed.
+      - name: carrier_booking_id
+        description: Unique identifier of the carrier booking record.
+        tests:
+          - not_null
+      - name: carrier_code
+        description: Carrier Standard Carrier Alpha Code (SCAC).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['BLUX', 'NSTR', 'MANUAL TEMPLATE']
+      - name: carrier_name
+        description: Human-readable carrier name.
+      - name: container_types
+        description: Distinct Forto container type codes in the booking.
+      - name: created_at
+        description: UTC-timestamp indicating when entity was created.
+      - name: has_dangerous_goods
+        description: True when any cargo item carries dangerous goods.
+      - name: has_non_reefer_container
+        description: True when any container is non-reefer; with has_reefer_container identifies a reefer/non-reefer mix.
+      - name: has_reefer_container
+        description: True when any container is an operational or non-operational reefer.
+      - name: integration_method
+        description: Integration channel used to reach the carrier.
+      - name: is_deleted
+        description: Indicates whether this entity has been deleted.
+      - name: is_spot_booking
+        description: True when the booking is based on a spot offer.
+      - name: publish_time
+        description: PubSub metadata field. The time of publishing a message.
+      - name: shipment_id
+        description: Forto shipment identifier (SID) the booking belongs to.
+      - name: carrier_booking_source
+        description: Origin of the booking request.
+      - name: carrier_booking_state
+        description: Carrier booking lifecycle state.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['confirmed', 'cancelled', 'pending', 'failed', 'contacted']
+      - name: updated_at
+        description: UTC-timestamp indicating when entity was last updated/deleted.
+        tests:
+          - not_null
+      - name: is_volume_confirmed
+        description: Derived flag indicating whether the booking secures carrier space. True when booking_state = 'confirmed'. This is the core KPI flag for volume reporting.
+        tests:
+          - not_null
 
   - name: forto_shipments
     description: "dbt model for shipments dataset."

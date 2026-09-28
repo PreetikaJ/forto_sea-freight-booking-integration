@@ -11,7 +11,6 @@ dim_carrier_bookings as (
     select * from {{ ref('dim_carrier_bookings') }}
 ),
 
--- Join shipments with the new dimensional table.
 -- For shipments that appear in dim_carrier_bookings (new product feature),
 -- use the is_confirmed_volume flag derived from carrier booking state.
 -- For all other shipments, retain the original is_confirmed_volume from shipments.

@@ -15,18 +15,34 @@ models:
           - not_null
       - name: carrier_booking_id
         description: "Unique identifier of the carrier booking record."
+        tests:
+          - not_null
       - name: carrier_booking_reference
         description: "Carrier-assigned booking reference, populated once confirmed."
       - name: booking_attempt
         description: "Booking attempt number for the shipment; increments on each retry."
+        tests:
+          - not_null
       - name: carrier_code
         description: "Carrier Standard Carrier Alpha Code (SCAC)."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['BLUX', 'NSTR', 'MANUAL TEMPLATE']
       - name: carrier_name
         description: "Human-readable carrier name."
       - name: carrier_booking_state
         description: "Carrier booking lifecycle state."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['confirmed', 'cancelled', 'pending', 'failed', 'contacted']
       - name: is_volume_confirmed
         description: "True when the shipment volume is confirmed."
+        tests:
+          - not_null
       - name: carrier_booking_source
         description: "Origin of the booking request."
       - name: integration_method
@@ -47,12 +63,18 @@ models:
         description: "True when a shipment has multiple booking attempts."
       - name: created_at
         description: "UTC-timestamp indicating when entity was created."
+        tests:
+          - not_null
       - name: updated_at
         description: "UTC-timestamp indicating when entity was last updated/deleted."
+        tests:
+          - not_null
       - name: publish_time
         description: "PubSub metadata field. The time of publishing a message."
       - name: dbt_loaded_at
         description: "UTC-timestamp indicating when the entity was loaded into dbt."
+        tests:
+          - not_null
 
   - name: shipment_volume_enriched
     description: "dbt model for enriched shipment volume dataset."
